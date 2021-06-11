@@ -1,17 +1,17 @@
-from xauat_login import XauatLogin
+from buaa_login import BuaaLogin
 
 if __name__ == '__main__':
-    username = str(input('请输入学号：'))
-    passwd = str(input('请输入密码: '))
-    a = XauatLogin(username=username,
+    username = str(input('Input username:'))
+    passwd = str(input('Input password: '))
+    a = BuaaLogin(username=username,
                    password=passwd)
     while 1:
-        print('\n{: ^28}'.format('请输入指令'))
+        print('\n{: ^28}'.format('Input order'))
         print('{:-^31}'.format(''))
-        print('{: ^15}'.format('1') + '-' + '{: ^15}'.format('登录'))
-        print('{: ^15}'.format('2') + '-' + '{: ^15}'.format('注销'))
-        print('{: ^15}'.format('3') + '-' + '{: ^15}'.format('状态'))
-        print('{: ^15}'.format('4') + '-' + '{: ^15}'.format('退出'))
+        print('{: ^15}'.format('1') + '-' + '{: ^15}'.format('Login'))
+        print('{: ^15}'.format('2') + '-' + '{: ^15}'.format('Logoff'))
+        print('{: ^15}'.format('3') + '-' + '{: ^15}'.format('Status'))
+        print('{: ^15}'.format('4') + '-' + '{: ^15}'.format('Quit'))
         print('{:-^31}\n'.format(''))
         command = str(input(''))
         if command == '1':
@@ -23,7 +23,7 @@ if __name__ == '__main__':
         elif command == '4':
             exit()
         else:
-            print('\n{: ^28}'.format('格式错误'))
+            print('\n{: ^28}'.format('Wrong formation'))
 
 
 
