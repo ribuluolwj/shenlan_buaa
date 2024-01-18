@@ -14,13 +14,26 @@ class checkAccess(object):
     def canConnect(self):
         try:
             baidu_request=requests.get("http://www.baidu.com")
+            bing_request=requests.get("http://cn.bing.com")
+            #bing_request=requests.get("http://www.liporihk.com")
             if(baidu_request.status_code==200):
                 baidu_request.encoding = 'utf-8'
                 baidu_request_bsObj = BeautifulSoup(baidu_request.text, 'html.parser')
-                baidu_input = baidu_request_bsObj.find(value="百度一下")
+                baidu_input = baidu_request_bsObj.find_all(value="百度一下")
                 if baidu_input==None:
+                    print ('Baidu is not OK!')
                     return False
-                return True
+                print ('Baidu is checked OK!')
+                if(bing_request.status_code==200):
+                    bing_request.encoding = 'utf-8'
+                    bing_request_bsObj = BeautifulSoup(bing_request.text, 'html.parser')
+                    bing_input = bing_request_bsObj.find_all(name='label',attrs={"aria-label":"搜索网页"})
+                    #print(bing_input)
+                    if bing_input==None or bing_input==[]:
+                        print ('Bing is not OK!')
+                        return False
+                    print ('Bing is checked OK!')
+                    return True
             else:
                 return False
         except:
@@ -53,7 +66,7 @@ class checkAccess(object):
 
 if __name__ == '__main__':
     username = str("by1604155")
-    passwd = str("lwj19900724")
+    passwd = str("lwj@1314.")
     bl = BuaaLogin(username=username,
                   password=passwd)
     ca = checkAccess ()
